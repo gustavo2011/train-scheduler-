@@ -38,20 +38,26 @@ var config = {
         alert('Train Added!!!');
   })
 
-    database.ref().on("child_added", function(childSnapshot){
-        console.log(childSnapshot.val());
+    database.ref().on("child_added", function(snapshot){
+        console.log(snapshot.val());
 
-            var name = childSnapshot.val().name; 
-			var destination = childSnapshot.val().destination; 
-			var frequency = childSnapshot.val().frequency; 
-            var startTime = childSnapshot.val().startTime;
-            
-            console.log('Start Time: ', startTime);
-			console.log('Remainder: ', remainder);
-			console.log('Minutes: ', minutes);
-			console.log('Arrival: ',arrival);
+      
+            var name = snapshot.val().name; 
+                 console.log('Name: ', name);
 
-			$('#schedule').append(`<tr><td>${name}</td><td>${destination}</td><td>${frequency}</td><td>${arrival}</td><td>${minutes}</td>`)
+            var destination = snapshot.val().destination; 
+                 console.log('Destination: ', destination);
+
+            var frequency = snapshot.val().frequency;
+                 console.log('Frequency: ', frequency);
+
+            var startTime = snapshot.val().startTime; 
+                 console.log('Start time: ', startTime);
+
+
+
+			$('#trainSchedule').append(`<tr><td>${name}</td><td>${destination}</td><td>${frequency}</td>`);
+
     })
 
 
